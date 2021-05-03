@@ -8,7 +8,6 @@ const connectDB = require('./config/db')
 dotenv.config({ path: './config/config.env'});
 
 //Route files
-const bootcamps = require('./routes/bootcamps');
 const users = require('./routes/users');
 
 //Connect to database
@@ -25,7 +24,6 @@ if(process.env.NODE_ENV === 'development') {
 }
 
 // Mounte routers
-app.use('/api/v1/bootcamps', bootcamps);
 app.use( '/api', users);
 
 app.use(errorHandler);
