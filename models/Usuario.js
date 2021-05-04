@@ -17,6 +17,10 @@ const UsuarioSchema = new mongoose.Schema({
         type: String,
         required: [true, 'please add a tipo usuario']
     },
+    idUsuario: {
+        type: String,
+        required: false
+    },
     createdAt: {
         type: Date,
         default: Date.now

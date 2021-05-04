@@ -96,11 +96,20 @@ exports.createUser = asyncHandler(async (req, res, next) => {
     const user = await Usuario.create(req.body.user); // se nao tiver um paraemtro no model, ele eh ignorado
     req.body.data.idUsuario = user._id;
 
-    console.log(req.body);
-    console.log(user);
-    
+    //console.log(req.body);
+    //console.log(user);
+
+    const user_id = user._id;
+
     if (req.body.user.tipoUsuario === 'Motorista'){
         const typeUser = await Motorista.create(req.body.data);
+        const user = await Usuario.findByIdAndUpdate(user_id, {
+            idUsuario: typeUser._id
+        }, 
+        {
+            new: true,
+            runValidators: true
+        });
         res.status(201).json({
             success: true,
             user: user,
@@ -109,6 +118,13 @@ exports.createUser = asyncHandler(async (req, res, next) => {
     }
     else if (req.body.user.tipoUsuario === 'Analista'){
         const typeUser = await Analista.create(req.body.data);
+        const user = await Analista.findByIdAndUpdate(user_id, {
+            idUsuario: typeUser._id
+        }, 
+        {
+            new: true,
+            runValidators: true
+        });
         res.status(201).json({
             success: true,
             user: user,
@@ -117,6 +133,13 @@ exports.createUser = asyncHandler(async (req, res, next) => {
     }
     else if (req.body.user.tipoUsuario === 'Admin'){
         const typeUser = await Admin.create(req.body.data);
+        const user = await Admin.findByIdAndUpdate(user_id, {
+            idUsuario: typeUser._id
+        }, 
+        {
+            new: true,
+            runValidators: true
+        });
         res.status(201).json({
             success: true,
             user: user,
