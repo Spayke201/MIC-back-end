@@ -7,6 +7,7 @@ const {
     createCaminhao,
     createAgendamento,
     getAgendamentos,
+    getAgendamento,
     getUsers,
     getUser,
     getCargas,
@@ -33,6 +34,7 @@ router.route('/inserirDeposito').post(createDepositos);
 router.route('/inserirCaminhao').post(createCaminhao);
 router.route('/inserirAgendamento').post(createAgendamento);
 
+router.route('/agendamento/:id').get(getAgendamento);
 router.route('/agendamentos').get(getAgendamentos);
 router.route('/users').get(getUsers);
 router.route('/depositos').get(getDepositos);

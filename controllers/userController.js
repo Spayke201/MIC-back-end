@@ -103,6 +103,7 @@ exports.createUser = asyncHandler(async (req, res, next) => {
 
     if (req.body.user.tipoUsuario === 'Motorista'){
         const typeUser = await Motorista.create(req.body.data);
+        console.log(typeUser);
         const user = await Usuario.findByIdAndUpdate(user_id, {
             idUsuario: typeUser._id
         }, 
@@ -110,6 +111,7 @@ exports.createUser = asyncHandler(async (req, res, next) => {
             new: true,
             runValidators: true
         });
+        console.log(user);
         res.status(201).json({
             success: true,
             user: user,
@@ -227,6 +229,25 @@ exports.getAgendamentos = asyncHandler(async (req, res, next) => {
     res.status(201).json({
         success: true,
         agendamentos: agendamentos
+    });
+
+    // usar error response
+    //next(err);
+    
+});
+
+// GET -> pegar agendamentos do motorista
+// /api/agendamento/:id
+exports.getAgendamento = asyncHandler(async (req, res, next) => {
+    
+    const agendamento = await Agendamento.find({
+        idMotorista: req.params.id,
+        finalizado: true
+    }); // se nao tiver um paraemtro no model, ele eh ignorado
+
+    res.status(201).json({
+        success: true,
+        agendamentos: agendamento
     });
 
     // usar error response
