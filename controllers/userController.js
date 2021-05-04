@@ -120,7 +120,7 @@ exports.createUser = asyncHandler(async (req, res, next) => {
     }
     else if (req.body.user.tipoUsuario === 'Analista'){
         const typeUser = await Analista.create(req.body.data);
-        const user = await Analista.findByIdAndUpdate(user_id, {
+        const user = await Usuario.findByIdAndUpdate(user_id, {
             idUsuario: typeUser._id
         }, 
         {
@@ -135,7 +135,7 @@ exports.createUser = asyncHandler(async (req, res, next) => {
     }
     else if (req.body.user.tipoUsuario === 'Admin'){
         const typeUser = await Admin.create(req.body.data);
-        const user = await Admin.findByIdAndUpdate(user_id, {
+        const user = await Usuario.findByIdAndUpdate(user_id, {
             idUsuario: typeUser._id
         }, 
         {
