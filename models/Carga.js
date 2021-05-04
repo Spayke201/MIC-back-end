@@ -12,7 +12,7 @@ const CargaSchema = new mongoose.Schema({
         type: Number,
         required: [true, 'please add a modelo']
     },
-    idDepositoCarga: {
+    nomeDeposito: {
         type: String,
         required: [true, 'please add a idDepositoCarga']
     },
