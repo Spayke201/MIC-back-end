@@ -2,6 +2,7 @@ const express = require("express");
 const dotenv = require("dotenv");
 const morgan = require('morgan')
 const colors = require('colors');
+const cors = require('cors');
 const errorHandler = require('./middleware/error');
 const connectDB = require('./config/db')
 
@@ -9,6 +10,11 @@ dotenv.config({ path: './config/config.env'});
 
 //Route files
 const users = require('./routes/users');
+
+var corsOptions = {
+    origin: 'http://localhost:3000',
+    optionsSuccessStatus: 200
+  }
 
 //Connect to database
 connectDB();
@@ -25,6 +31,9 @@ if(process.env.NODE_ENV === 'development') {
 
 // Mounte routers
 app.use( '/api', users);
+
+// CORS
+app.use(cors(corsOptions))
 
 app.use(errorHandler);
 

@@ -1,6 +1,5 @@
 const ErrorResponse = require('../utils/errorReponse');
 const asyncHandler = require('../middleware/async');
-const Bootcamp = require('../models/Bootcamp');
 const Motorista = require('../models/Motorista');
 const Analista = require('../models/Analista');
 const Admin = require('../models/Admin');
