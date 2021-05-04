@@ -349,7 +349,9 @@ exports.login = asyncHandler(async (req, res, next) => {
     res.status(201).json({
         success: true,
         type: user[0].tipoUsuario,
-        id: user[0]._id
+        id: user[0]._id,
+        idUsuario: user[0].idUsuario
+        
     });
 });
 
