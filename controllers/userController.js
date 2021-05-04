@@ -103,7 +103,6 @@ exports.createUser = asyncHandler(async (req, res, next) => {
 
     if (req.body.user.tipoUsuario === 'Motorista'){
         const typeUser = await Motorista.create(req.body.data);
-        console.log(typeUser);
         const user = await Usuario.findByIdAndUpdate(user_id, {
             idUsuario: typeUser._id
         }, 
@@ -285,14 +284,14 @@ exports.getUser = asyncHandler(async (req, res, next) => {
         });
     }
     else if (req.params.type === 'admin'){
-        const user = await Admin.find(req.params.id);
+        const user = await Admin.findById(req.params.id);
         res.status(201).json({
             success: true,
             user: user
         });
     }
     else if (req.params.type === 'analista'){
-        const user = await Analista.find(req.params.id);
+        const user = await Analista.findById(req.params.id);
         res.status(201).json({
             success: true,
             user: user
