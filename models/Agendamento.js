@@ -6,11 +6,11 @@ const AgendamentoSchema = new mongoose.Schema({
         type: String,
         required: [true, 'please add a nome']
     },
-    idCarga: {
+    carga: {
         type: String,
         required: [true, 'please add a idCarga']
     },
-    idCaminhao: {
+    caminhao: {
         type: String,
         required: false
     },
@@ -18,11 +18,15 @@ const AgendamentoSchema = new mongoose.Schema({
         type: String,
         required: [true, 'please add a destino']
     },
-    idUsuario: { // will be inserted after
+    nomeMotorista: { // will be inserted after
         type: String,
         required: false
     },
-    idDeposito: {
+    idMotorista: { // will be inserted after
+        type: String,
+        required: false
+    },
+    deposito: {
         type: String,
         required: [true, 'please add a idDeposito']
     },
@@ -31,6 +35,10 @@ const AgendamentoSchema = new mongoose.Schema({
         required: [true, 'please add a createdById']
     },
     status: {
+        type: Boolean,
+        default: false
+    },
+    finalizado: {
         type: Boolean,
         default: false
     },

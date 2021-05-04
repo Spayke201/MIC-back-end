@@ -229,6 +229,40 @@ exports.getUsers = asyncHandler(async (req, res, next) => {
     
 });
 
+// GET -> pegar um usuario
+// /api/user/:id
+exports.getUser = asyncHandler(async (req, res, next) => {
+    
+    if (req.params.type === 'motorista'){
+        const user = await Motorista.findById(req.params.id);
+        res.status(201).json({
+            success: true,
+            user: user
+        });
+    }
+    else if (req.params.type === 'admin'){
+        const user = await Admin.find(req.params.id);
+        res.status(201).json({
+            success: true,
+            user: user
+        });
+    }
+    else if (req.params.type === 'analista'){
+        const user = await Analista.find(req.params.id);
+        res.status(201).json({
+            success: true,
+            user: user
+        });
+    }
+    else {
+        return next(new ErrorResponse(`Invalid get user parameters`, 404));
+    }
+
+    // usar error response
+    //next(err);
+    
+});
+
 // GET -> pegar todos depositos
 // /api/depositos
 exports.getDepositos = asyncHandler(async (req, res, next) => {
