@@ -26,6 +26,10 @@ const AnalistaSchema = new mongoose.Schema({
         type: String,
         required: [true, 'please add a idUsuario']
     },
+    imgUrl: { 
+        type: String,
+        required: [true, 'please add a img']
+    },
     createdAt: {
         type: Date,
         default: Date.now
