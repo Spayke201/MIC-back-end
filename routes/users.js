@@ -1,6 +1,7 @@
 const express = require('express');
 const {
-    updateAgendamentos, 
+    updateAgendamentos,
+    updateUser, 
     createUser,
     createCarga,
     createDepositos,
@@ -10,6 +11,7 @@ const {
     getAgendamento,
     getUsers,
     getUser,
+    getUserInicial,
     getCargas,
     getDepositos,
     getCaminhao,
@@ -34,6 +36,7 @@ router.route('/inserirDeposito').post(createDepositos);
 router.route('/inserirCaminhao').post(createCaminhao);
 router.route('/inserirAgendamento').post(createAgendamento);
 
+router.route('/user/:id').get(getUserInicial);
 router.route('/agendamento/:id').get(getAgendamento);
 router.route('/agendamentos').get(getAgendamentos);
 router.route('/users').get(getUsers);
@@ -45,5 +48,6 @@ router.route('/user/:type/:id').get(getUser);
 router.route('/login').post(login);
 
 router.route('/agendamento/:id').put(updateAgendamentos);
+router.route('/user/:id').put(updateUser);
 
 module.exports = router;

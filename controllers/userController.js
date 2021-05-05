@@ -9,85 +9,6 @@ const Caminhao = require('../models/Caminhao');
 const Deposito = require('../models/Deposito');
 const Agendamento = require('../models/Agendamento');
 
-/*
-
-// @route GET /api/v1/bootcamps
-// @desc Get all bootcamps
-// @access Public 
-exports.getBootcamps = asyncHandler(async (req, res, next) => {
-    
-    const bootcamps = await Bootcamp.find();
-    res.status(200).json({
-        success: true,
-        count: bootcamps.length,
-        data: bootcamps
-    });
-    next(err);
-    
-});
-
-// @route GET /api/v1/bootcamps/:id
-// @desc Get single bootcamps
-// @access Public 
-exports.getBootcamp = asyncHandler(async (req, res, next) => {
-    
-    const bootcamp = await Bootcamp.findById(req.params.id);
-    if(!bootcamp)
-        return next(new ErrorResponse(`Bootcamp not found with id of ${req.params.id}`, 404));
-
-    res.status(200).json({
-        success: true,
-        data: bootcamp
-    });
-    next(err);
-
-});
-
-// @route POST /api/v1/bootcamps
-// @desc Create new user
-// @access Private 
-exports.createUser = asyncHandler(async (req, res, next) => {
-    
-    const user = await Bootcamp.create(req.body); // se nao tiver um paraemtro no model, ele eh ignorado
-    res.status(201).json({
-        success: true,
-        data: bootcamp
-    });
-    next(err);
-    
-});
-
-// @route PUT /api/v1/bootcamps/:id
-// @desc Update single bootcamps
-// @access Private 
-exports.updateBootcamp = asyncHandler(async (req, res, next) => {
-    const bootcamp = await Bootcamp.findByIdAndUpdate(req.params.id, req.body, {
-        new: true,
-        runValidators: true
-    });
-    if(!bootcamp)
-        return next(new ErrorResponse(`Bootcamp not found with id of ${req.params.id}`, 404));
-    
-    res.status(200).json({ success: true, data: bootcamp });
-    next(err);
-});
-
-// @route DELETE /api/v1/bootcamps/:id
-// @desc Delete bootcamps
-// @access Private 
-exports.deleteBootcamp = asyncHandler(async (req, res, next) => {
-    const bootcamp = await Bootcamp.findByIdAndDelete(req.params.id);
-    if(!bootcamp)
-        return next(new ErrorResponse(`Bootcamp not found with id of ${req.params.id}`, 404));
-    
-    res.status(200).json({ success: true, data: {} });
-    next(err);
-        
-});
-*/
-
-
-
 
 // POST - insere algum user
 // /api/inserirUser
@@ -254,6 +175,22 @@ exports.getAgendamento = asyncHandler(async (req, res, next) => {
     
 });
 
+// GET -> pegar 1 USUARIO
+// /api/users
+exports.getUserInicial = asyncHandler(async (req, res, next) => {
+    
+    const usuario = await Usuario.findById(req.params.id);
+
+    res.status(201).json({
+        success: true,
+        usuario: usuario
+    });
+
+    // usar error response
+    //next(err);
+    
+});
+
 // GET -> pegar todos usuarios
 // /api/users
 exports.getUsers = asyncHandler(async (req, res, next) => {
@@ -387,6 +324,24 @@ exports.updateAgendamentos = asyncHandler(async (req, res, next) => {
     res.status(201).json({
         success: true,
         agendamentos: agendamentos
+    });
+
+    // usar error response
+    //next(err);
+    
+});
+
+// PUT -> alterar status e posicao usuario
+// /api/user/:id
+exports.updateUser = asyncHandler(async (req, res, next) => {
+    
+    const agendamentos = await Usuario.findByIdAndUpdate(req.params.id, req.body, {
+        new: true,
+        runValidators: true
+    }); // se nao tiver um paraemtro no model, ele eh ignorado
+
+    res.status(201).json({
+        success: true
     });
 
     // usar error response
