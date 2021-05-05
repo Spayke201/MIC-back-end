@@ -335,13 +335,14 @@ exports.updateAgendamentos = asyncHandler(async (req, res, next) => {
 // /api/user/:id
 exports.updateUser = asyncHandler(async (req, res, next) => {
     
-    const agendamentos = await Usuario.findByIdAndUpdate(req.params.id, req.body, {
+    const user = await Usuario.findByIdAndUpdate(req.params.id, req.body, {
         new: true,
         runValidators: true
     }); // se nao tiver um paraemtro no model, ele eh ignorado
 
     res.status(201).json({
-        success: true
+        success: true,
+        user: user
     });
 
     // usar error response
