@@ -18,6 +18,10 @@ const AgendamentoSchema = new mongoose.Schema({
         type: String,
         required: [true, 'please add a destino']
     },
+    coords: {
+        longitude: Number,
+        latitude: Number
+    },
     nomeMotorista: { // will be inserted after
         type: String,
         required: false
