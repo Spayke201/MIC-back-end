@@ -25,7 +25,6 @@ const UsuarioSchema = new mongoose.Schema({
         longitude: Number,
         latitude: Number
     },
-    emPercurso: Boolean,
     createdAt: {
         type: Date,
         default: Date.now
