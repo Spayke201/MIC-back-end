@@ -212,7 +212,7 @@ exports.getUsers = asyncHandler(async (req, res, next) => {
 // GET -> pegar um usuario
 // /api/user/:id
 exports.getUser = asyncHandler(async (req, res, next) => {
-    
+    console.log('SAJDOIAJSD')
     if (req.params.type === 'motorista'){
         const user = await Motorista.findById(req.params.id);
         res.status(201).json({
@@ -237,6 +237,32 @@ exports.getUser = asyncHandler(async (req, res, next) => {
     else {
         return next(new ErrorResponse(`Invalid get user parameters`, 404));
     }
+
+    // usar error response
+    //next(err);
+    
+});
+
+// GET -> pegar um usuario
+// /api/user/position/:id
+exports.getUserPosition = asyncHandler(async (req, res, next) => {
+    console.log(req.params.id);
+    const user = await Motorista.findById(req.params.id);
+    let idUser = user.idUsuario;
+    let imgUrl = user.imgUrl;
+    const usuario = await Usuario.findById(idUser);
+
+    const data = {
+        imgUrl,
+        coords: usuario.coords
+    }
+
+    console.log(data);
+
+    res.status(201).json({
+        success: true,
+        usuario: data
+    });
 
     // usar error response
     //next(err);

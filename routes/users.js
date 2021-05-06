@@ -12,6 +12,7 @@ const {
     getUsers,
     getUser,
     getUserInicial,
+    getUserPosition,
     getCargas,
     getDepositos,
     getCaminhao,
@@ -44,6 +45,7 @@ router.route('/depositos').get(getDepositos);
 router.route('/cargas').get(getCargas);
 router.route('/caminhoes').get(getCaminhao);
 router.route('/user/:type/:id').get(getUser);
+router.route('/userPosition/:id').get(getUserPosition);
 
 router.route('/login').post(login);
 
