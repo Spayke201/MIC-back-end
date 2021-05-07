@@ -13,7 +13,15 @@ const Agendamento = require('../models/Agendamento');
 // POST - insere algum user
 // /api/inserirUser
 exports.createUser = asyncHandler(async (req, res, next) => {
-    
+    console.log(req.body.data)
+    if (req.body.data.cpf === ""
+    || req.body.data.telefone === ""
+    || req.body.data.imgUrl ===""
+    || req.body.data.email ==="") {
+        console.log('ENTROU AQUI')
+        return next(new ErrorResponse(`Precisa preencher todos os campos`, 403));
+    }
+
     const user = await Usuario.create(req.body.user); // se nao tiver um paraemtro no model, ele eh ignorado
     req.body.data.idUsuario = user._id;
 
@@ -212,7 +220,6 @@ exports.getUsers = asyncHandler(async (req, res, next) => {
 // GET -> pegar um usuario
 // /api/user/:id
 exports.getUser = asyncHandler(async (req, res, next) => {
-    console.log('SAJDOIAJSD')
     if (req.params.type === 'motorista'){
         const user = await Motorista.findById(req.params.id);
         res.status(201).json({

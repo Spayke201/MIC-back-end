@@ -4,8 +4,10 @@ const slugify = require('slugify');
 const UsuarioSchema = new mongoose.Schema({
     login: {
         type: String,
-        required: [true, 'please add a login'],
         unique: true,
+        dropDups: true,
+        trim: true,
+        required: [true, 'please add a login'],
         maxlenght: [20, 'Name can not be more than 50 characters']
     },
     senha: {
