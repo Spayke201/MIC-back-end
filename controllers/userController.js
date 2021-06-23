@@ -259,9 +259,12 @@ exports.getUserPosition = asyncHandler(async (req, res, next) => {
     let imgUrl = user.imgUrl;
     const usuario = await Usuario.findById(idUser);
 
+    const carga = await Agendamento.find({ idMotorista: req.params.id });
+
     const data = {
         imgUrl,
-        coords: usuario.coords
+        coords: usuario.coords,
+        cargoCoords: carga[0].coords
     }
 
     console.log(data);
