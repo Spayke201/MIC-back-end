@@ -263,7 +263,7 @@ exports.getUserPosition = asyncHandler(async (req, res, next) => {
                                             status: true,
                                             finalizado: false });
 
-    console.log(carga)
+    //console.log(carga)
 
     const data = {
         imgUrl,
