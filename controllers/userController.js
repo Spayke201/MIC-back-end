@@ -251,7 +251,7 @@ exports.getUser = asyncHandler(async (req, res, next) => {
 });
 
 // GET -> pegar um usuario
-// /api/user/position/:id
+// /api/userPosition/:id
 exports.getUserPosition = asyncHandler(async (req, res, next) => {
     console.log(req.params.id);
     const user = await Motorista.findById(req.params.id);
@@ -259,7 +259,11 @@ exports.getUserPosition = asyncHandler(async (req, res, next) => {
     let imgUrl = user.imgUrl;
     const usuario = await Usuario.findById(idUser);
 
-    const carga = await Agendamento.find({ idMotorista: req.params.id });
+    const carga = await Agendamento.find({ idMotorista: req.params.id,
+                                            status: true,
+                                            finalizado: false });
+
+    console.log(carga)
 
     const data = {
         imgUrl,
